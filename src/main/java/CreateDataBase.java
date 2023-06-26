@@ -227,11 +227,13 @@ public class CreateDataBase {
                 '}';
     }
 
-    public interface DataBaseCreator {
-        boolean createDataBase(String newDataBaseName) throws SQLException;
+    public static class DataBaseCreator {
+        boolean createDataBase(String newDataBaseName) throws SQLException {
+            return false;
+        }
     }
 
-    public static class MySqlDataBaseCreator implements DataBaseCreator {
+    public static class MySqlDataBaseCreator extends DataBaseCreator {
 
         private final String url;
         private final String user;
@@ -263,7 +265,7 @@ public class CreateDataBase {
         }
     }
 
-    public static class PostgreSqlDataBaseCreator implements DataBaseCreator {
+    public static class PostgreSqlDataBaseCreator extends DataBaseCreator {
 
         private final String url;
         private final String user;

@@ -2,11 +2,12 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public class IpAddressConfig {
+
     private String ipaddressconfig;
     private static final String DEFAULT_IP = "127.0.0.1";
 
     /**
-     * Constructor for IpAddressConfig.
+     * Constructor para ConfiguracionDireccionIP.
      */
     public IpAddressConfig() {
         this(DEFAULT_IP);
@@ -18,33 +19,35 @@ public class IpAddressConfig {
 
 
     /**
-     * Checks if the given IP address is valid.
+     * Comprueba si la dirección IP dada es válida.
      *
-     * @param ipaddressconfig the IP address to check
-     * @return true if the IP address is valid, false otherwise
+     * @param ipaddressconfig config la dirección IP a comprobar
+     * @return true si la dirección IP es válida, false en caso contrario
      */
-    @Contract(pure = true)
-    private boolean isValidIpAddress(@NotNull String ipaddressconfig) {
+    private boolean isValidIpAddress(String ipaddressconfig) {
         return ipaddressconfig.matches("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
-        // Add more validation logic here if needed
-        // For example, check if the IP address is a broadcast or reserved address
+        // Añade más lógica de validación aquí si es necesario
+        // Por ejemplo, comprueba si la dirección IP es una dirección de difusión o reservada
     }
 
     /**
-     * Returns the current IP address.
+     * Devuelve la dirección IP actual.
      *
-     * @return the current IP address
+     * @return la dirección IP actual
      */
     public String getIpAddressConfig() {
         return ipaddressconfig;
     }
 
     /**
-     * Sets the current IP address.
+     * Establece la dirección IP actual.
      *
-     * @param ipaddressconfig the new IP address
+     * @param ipaddressconfig la nueva dirección IP
      */
     public void setIpAddressConfig(String ipaddressconfig) {
+        if (ipaddressconfig == null) { // Se ha añadido una comprobación de nulidad
+            throw new IllegalArgumentException("La dirección IP no puede ser nula");
+        }
         if (isValidIpAddress(ipaddressconfig)) {
             this.ipaddressconfig = ipaddressconfig;
             System.out.println("La ip " + ipaddressconfig + " es valida");

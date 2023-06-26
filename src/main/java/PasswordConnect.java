@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class PasswordConnect {
 
-    private static String password;
+    private String password;
     private static final String DEFAULT_PASSWORD = "tupapichulo";
 
     public PasswordConnect() {
@@ -21,23 +21,17 @@ public class PasswordConnect {
         setPasswordConnect(password);
     }
 
-    /**
-     * Prompts the user to enter a password.
-     *
-     * @return the password entered by the user
-     */
-    private String getPassword() {
-        return password;
-    }
-
     public String getPasswordConnect() {
         return password;
     }
 
-    public void setPasswordConnect(@NotNull String password) {
+    public void setPasswordConnect(String password) {
+        if (password == null) {
+            throw new IllegalArgumentException("La contraseña no puede ser nula");
+        }
         if (password.length() > 0 && password.length() <= 15) {
-            System.out.println("LA contraseña se a introducido exitosamente");
-            PasswordConnect.password = password;
+            System.out.println("La contraseña se ha introducido exitosamente");
+            this.password = password;
 
         } else {
             System.out.println("Error: Contraseña mayor a 15 caracteres");

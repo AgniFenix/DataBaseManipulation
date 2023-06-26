@@ -81,7 +81,7 @@ public class CreateFileFromDataBaseConnect {
                 logger.info("Archivos de conexion para la base de datos {} creados", dataBaseNameConnect);
             }
             this.ipAddress = new IpAddressConfig(ipAddress);
-            this.portConnect = new PortConnect(portConnect);
+            this.portConnect = new PortConnect(Integer.parseInt(portConnect));
             this.userConnect = new UserConnect(userConnect);
             this.passwordConnect = new PasswordConnect(passwordConnect);
             this.dataBaseNameConnect = new DataBaseNameConnect(dataBaseNameConnect);

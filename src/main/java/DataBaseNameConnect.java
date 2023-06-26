@@ -1,8 +1,6 @@
-import org.jetbrains.annotations.NotNull;
-
 public class DataBaseNameConnect {
     private static final String DEFAULT_DATABASE_NAME_CONNECT = "fenix";
-    private static String databasenameconnect;
+    private String databasenameconnect; // Se ha eliminado la palabra clave static
 
     /**
      * Constructor for DataBaseNameConnect.
@@ -22,9 +20,9 @@ public class DataBaseNameConnect {
      * @param databasename the name of the database to check
      * @return true if the database name is valid, false otherwise
      */
-    private static boolean isValidDatabaseName(@NotNull String databasename) {
+    private static boolean isValidDatabaseName(String databasename) {
         // Add more validation logic here if needed
-        return databasename.trim().length() > 0 && databasename.trim().length() <= 9 && !databasename.isEmpty();
+        return databasename.trim().length() > 0 && databasename.trim().length() <= 9;
     }
 
     /**
@@ -41,9 +39,9 @@ public class DataBaseNameConnect {
      *
      * @param databasenameconnect the name of the database to connect to
      */
-    public static void setDataBaseNameConnect(String databasenameconnect) {
+    public void setDataBaseNameConnect(String databasenameconnect) { // Se ha eliminado la palabra clave static
         if (isValidDatabaseName(databasenameconnect)) {
-            DataBaseNameConnect.databasenameconnect = databasenameconnect;
+            this.databasenameconnect = databasenameconnect;
             System.out.println("La base de datos se ha cambiado a: " + databasenameconnect);
         } else {
             throw new IllegalArgumentException("El nombre de la base de datos no es válido");
